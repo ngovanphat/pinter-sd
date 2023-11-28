@@ -11,6 +11,23 @@ export default function Home() {
     router.push(`/search-result?prompt=${prompt}`);
   };
 
+  const randomPrompt = () => {
+    const randomArrayPrompt = [
+      "flower",
+      "cat",
+      "dog",
+      "bird",
+      "sea",
+      "poodle",
+      "fish",
+      "girl",
+    ];
+    const randomPrompt =
+      randomArrayPrompt[Math.floor(Math.random() * randomArrayPrompt.length)];
+    setPrompt(randomPrompt);
+    handleSearch();
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center min-h-[100vh] p-4 sm:p-6 md:p-16 lg:p-24 bg-white">
       <h1 className="text-[70px] font-bold text-black">PiSearch</h1>
@@ -67,7 +84,7 @@ export default function Home() {
           <Button
             size="sm"
             className="w-fit bg-[#303134] hover:bg-[#303134]"
-            onClick={handleSearch}
+            onClick={randomPrompt}
           >
             <p className="text-white text-md font-normal">I'm Feeling Lucky</p>
           </Button>
