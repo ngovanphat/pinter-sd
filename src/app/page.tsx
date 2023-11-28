@@ -24,8 +24,7 @@ export default function Home() {
     ];
     const randomPrompt =
       randomArrayPrompt[Math.floor(Math.random() * randomArrayPrompt.length)];
-    setPrompt(randomPrompt);
-    handleSearch();
+    router.push(`/search-result?prompt=${randomPrompt}`);
   };
 
   return (
