@@ -20,6 +20,7 @@ export class Api {
   getHeader(target: string) {
     return {
       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      "Access-Control-Allow-Origin": "*",
     };
   }
 
@@ -108,8 +109,14 @@ export class Api {
 
   async getAPIGuest(
     target: string,
-    params: any,
-    options = { getFullResp: false, showAlert: false, headers: {} }
+    params?: any,
+    options = {
+      getFullResp: false,
+      showAlert: false,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    }
   ) {
     return this.instance
       .get(this.getUrl(target), {

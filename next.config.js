@@ -22,10 +22,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/media/:path*",
-        destination: `${
-          process.env.IMAGE_BASE_URL || "https://dev.nqrt.ai"
-        }/media/:path*`,
+        source: "/:path*",
+        destination: `${process.env.NEXT_PUBLIC_API_BASE_URL}/:path*`,
       },
     ];
   },

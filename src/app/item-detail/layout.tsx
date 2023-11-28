@@ -3,11 +3,11 @@ import "../globals.css";
 import NavBar from "@/src/components/NavBar";
 
 export const metadata: Metadata = {
-  title: "Search Result",
-  description: "Search result of the prompt",
+  title: "Item detail",
+  description: "Item detail",
 };
 
-export default function SearchResultLayout({
+export default function ItemDetailLayout({
   children,
 }: {
   children: React.ReactNode;
