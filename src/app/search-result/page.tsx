@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import NextImage from "next/image";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from "next/navigation";
 import thumbnailIcon from "@/public/thumbnail-icon/thumbnail-icon@3x.webp";
 
 import "./Mansory.css";
@@ -23,19 +23,31 @@ type ImageResult = {
 
 export default function ResultPage() {
   const [result, setResult] = useState<ResultResponse | null>(null);
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
+  const prompt = searchParams.get("prompt") || "";
+  const router = useRouter();
   useEffect(() => {
-    const prompt = searchParams.get('prompt')
-    searchService.searchFromPrompt(prompt).then((data) => {
-      setResult(data);
-    }).catch(error => console.log(error));
-  }, []);
+    searchService
+      .searchFromPrompt(prompt)
+      .then((data) => {
+        setResult(data);
+      })
+      .catch((error) => console.log(error));
+  }, [prompt]);
+
+  const handleClick = (id: number) => {
+    router.push(`/item-detail?id=${id}`);
+  };
 
   const renderImage = () => {
     if (!result || result?.result_count === 0) return <></>;
 
     return result.result.map((item, index) => (
-      <div className="flex flex-col items-center rounded-lg relative h-fit w-full scale-100 2xl:hover:scale-90 2xl:hover:z-10 duration-200 mb-3 2xl:hover:cursor-pointer" key={item.pi_id}>
+      <div
+        className="flex flex-col cursor-pointer	items-center rounded-lg relative h-fit w-full scale-100 2xl:hover:scale-90 2xl:hover:z-10 duration-200 mb-3 2xl:hover:cursor-pointer"
+        key={item.pi_id}
+        onClick={() => handleClick(item.pi_id)}
+      >
         <NextImage
           src={item.path}
           alt={`image No.${index}`}
@@ -54,9 +66,12 @@ export default function ResultPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center min-h-[100vh] p-24 bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-      <h1 className="text-[50px] font-bold">AI Generator Tool</h1>
-      <div className="flex w-full flex-col gap-4">
+    <main className="flex min-h-screen flex-col  sm:items-center min-h-[100vh] px-5 bg-white">
+      <h1 className="text-md text-left sm:text-center sm:text-lg md:text-xl lg:text-2xl text-black">
+        About {result?.result_count} results (
+        {(result?.request_time || 0).toFixed(2)} seconds)
+      </h1>
+      <div className="flex w-full flex-col gap-4 mt-3">
         <Masonry
           breakpointCols={{
             default: 5,
