@@ -1,12 +1,13 @@
 "use client";
-
+import { useState } from 'react'
 import { Button, Label, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
+  const [prompt, setPrompt] = useState('');
   const handleSearch = () => {
-    router.push("/search-result");
+    router.push(`/search-result?prompt=${prompt}`);
   };
 
   return (
@@ -28,6 +29,7 @@ export default function Home() {
               padding: "10px 20px",
               borderRadius: "20px",
             }}
+            onChange={(e) => setPrompt(e.target.value)}
           />
         </div>
         <div className="w-full">

@@ -108,7 +108,7 @@ export class Api {
 
   async getAPIGuest(
     target: string,
-    params: any,
+    params?: any,
     options = { getFullResp: false, showAlert: false, headers: {} }
   ) {
     return this.instance
