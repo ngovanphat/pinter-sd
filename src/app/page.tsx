@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center min-h-[100vh] p-4 sm:p-6 md:p-16 lg:p-24 bg-white">
-      <h1 className="text-[70px] font-bold text-black">PiSearch</h1>
+      <h1 className="text-[70px] font-bold text-black">What prompts?</h1>
       <div className="flex w-full flex-col gap-4 mt-5 items-center justify-center">
         <div className="w-full md:w-1/2 w-full">
           {/* <div className="mb-2 block">

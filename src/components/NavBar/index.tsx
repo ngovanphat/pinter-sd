@@ -13,7 +13,9 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="w-full h-[50px] flex items-center justify-center bg-white p-3">
+    <nav className="relative w-full h-[50px] flex items-center justify-center bg-white p-3">
+      <h1 className="font-bold text-xl text-black">Pisearch.art</h1>
+
       <TextInput
         id="prompt"
         placeholder="Input your prompt"

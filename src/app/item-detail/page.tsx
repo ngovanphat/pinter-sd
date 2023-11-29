@@ -78,7 +78,7 @@ export default function ItemDetailScreen() {
                   Negative prompt:
                 </p>
                 <p className="text-md text-white rounded-md bg-[#1971c2] px-4 py-2">
-                  {itemDetail?.item.payload?.prompt}
+                  {itemDetail?.item.payload?.negative_prompt}
                 </p>
               </div>
               <div className="mt-4 flex md:flex-row flex-col md:items-center gap-4">
